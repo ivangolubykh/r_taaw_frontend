@@ -3,27 +3,55 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'theme/theme_provider.dart';
 import 'routing/router.dart';
 import 'l10n/app_localizations.dart';
+import 'services/user_settings_service.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final userSettings = await UserSettingsService.create();
+  runApp(MyApp(userSettings: userSettings));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  final UserSettingsService userSettings;
+  const MyApp({super.key, required this.userSettings});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = ThemeMode.system;
+  late ThemeMode _themeMode;
+  late Locale _locale;
+
+  @override
+  void initState() {
+    super.initState();
+    _themeMode = widget.userSettings.themeMode;
+    _locale = widget.userSettings.locale;
+  }
 
   void _toggleTheme() {
+    final newMode = _themeMode == ThemeMode.dark
+        ? ThemeMode.light
+        : ThemeMode.dark;
+    widget.userSettings.setThemeMode(newMode);
     setState(() {
-      _themeMode = _themeMode == ThemeMode.dark
-          ? ThemeMode.light
-          : ThemeMode.dark;
+      _themeMode = newMode;
     });
+  }
+
+  void _changeLocale(Locale? locale) {
+    if (locale == null) {
+      widget.userSettings.resetLocaleToSystem();
+      setState(() {
+        _locale = widget.userSettings.locale;
+      });
+    } else {
+      widget.userSettings.setLocale(locale);
+      setState(() {
+        _locale = locale;
+      });
+    }
   }
 
   @override
@@ -32,10 +60,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       toggleTheme: _toggleTheme,
       child: ScreenUtilInit(
-        designSize: const Size(
-          360,
-          690,
-        ), // reference design size used for layout scaling
+        designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
@@ -45,7 +70,7 @@ class _MyAppState extends State<MyApp> {
             darkTheme: ThemeData.dark(useMaterial3: true),
             themeMode: _themeMode,
             routerConfig: router,
-            locale: const Locale('en'), // can be user-controlled in the future
+            locale: _locale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
           );
