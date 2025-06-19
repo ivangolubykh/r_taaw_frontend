@@ -14,7 +14,16 @@ The frontend is written in **Flutter** and supports:
 - Theme switching (light/dark) using a `ThemeProvider`
 - Clean routing structure via `go_router`
 - Target platforms: **Android** and **Web**
+---
 
+## ⚙️ Environment Setup
+
+- Configuration values are stored in .env (copied from .env.example)
+- Use flutter_dotenv to access env variables in code 
+- For multi-platform builds, use the script:**
+   ```bash
+   ./build_all.sh
+   ```
 ---
 
 ## 🧭 Where to Start

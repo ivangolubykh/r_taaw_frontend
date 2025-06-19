@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'l10n/l10n.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'theme/theme_provider.dart';
 import 'routing/router.dart';
 import 'l10n/app_localizations.dart';
@@ -32,16 +31,25 @@ class _MyAppState extends State<MyApp> {
     return ThemeProvider(
       themeMode: _themeMode,
       toggleTheme: _toggleTheme,
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData.light(useMaterial3: true),
-        darkTheme: ThemeData.dark(useMaterial3: true),
-        themeMode: _themeMode,
-        routerConfig: router,
-        locale: const Locale('en'), // can be user-controlled in the future
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        // supportedLocales: L10n.all,
-        supportedLocales: AppLocalizations.supportedLocales,
+      child: ScreenUtilInit(
+        designSize: const Size(
+          360,
+          690,
+        ), // reference design size used for layout scaling
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData.light(useMaterial3: true),
+            darkTheme: ThemeData.dark(useMaterial3: true),
+            themeMode: _themeMode,
+            routerConfig: router,
+            locale: const Locale('en'), // can be user-controlled in the future
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+          );
+        },
       ),
     );
   }
