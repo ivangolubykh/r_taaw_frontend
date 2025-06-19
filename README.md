@@ -33,6 +33,7 @@ This repository contains the **Flutter-based frontend** of the project.
 ```bash
 git clone https://github.com/ivangolubykh/r_taaw_frontend.git
 cd r_taaw_frontend
+cp .env.example .env
 flutter pub get
 flutter run
 ```
@@ -67,6 +68,14 @@ lib/
 - Localization is already wired; use .arb files in lib/l10n/ to add translations.
 - Routing is handled via go_router. Main route: /.
 - Language and theme controls will be accessible from any screen (planned).
+
+### ⚙️ Environment and Builds
+
+- Environment variables are stored in .env (see .env.example)
+- To build for all supported platforms at once, run:
+```bash
+./build_all.sh
+```
 
 ---
 
