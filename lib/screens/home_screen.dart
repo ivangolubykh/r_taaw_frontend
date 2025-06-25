@@ -6,7 +6,12 @@ import 'package:r_taaw_frontend/core/constants/consts.dart';
 import 'package:r_taaw_frontend/l10n/app_localizations.dart';
 import 'package:r_taaw_frontend/theme/theme_provider.dart';
 
+/// The main home screen of the app.
+///
+/// Displays a welcome message and app bar with authentication and theme
+/// toggling. Includes a drawer for future settings navigation.
 class HomeScreen extends StatelessWidget {
+  /// Creates a [HomeScreen].
   const HomeScreen({super.key});
 
   @override
@@ -24,19 +29,19 @@ class HomeScreen extends StatelessWidget {
             tooltip: auth.isAuthenticated ? loc.logoutOption : loc.loginOption,
             onPressed: () {
               if (auth.isAuthenticated) {
-                showDialog(
+                showDialog<void>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: Text(loc.logoutConfirmTitle),
                     content: Text(loc.logoutConfirmMessage),
                     actions: [
                       TextButton(
-                        onPressed: () => Navigator.of(context).pop(), // Cancel
+                        onPressed: () => Navigator.of(context).pop(),
                         child: Text(loc.cancel),
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pop(); // Close dialog
+                          Navigator.of(context).pop();
                           auth.clearTokens();
                         },
                         child: Text(loc.logoutOption),
@@ -77,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                 '${loc.languageOption} (${AppConsts.languageFallbackLabel})',
               ),
               onTap: () {
-                // TODO: implement language change navigation
+                // TODO(ivangolubykh): Implement language change navigation.
               },
             ),
           ],

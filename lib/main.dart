@@ -7,6 +7,7 @@ import 'package:r_taaw_frontend/routing/router.dart';
 import 'package:r_taaw_frontend/services/user_settings_service.dart';
 import 'package:r_taaw_frontend/theme/theme_provider.dart';
 
+/// Entry point of the application.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final userSettings = await UserSettingsService.create();
@@ -14,13 +15,19 @@ void main() async {
   runApp(MyApp(userSettings: userSettings, authProvider: authProvider));
 }
 
+/// Root widget of the R‑Taaw application.
 class MyApp extends StatefulWidget {
+  /// Creates the app with [userSettings] and [authProvider].
   const MyApp({
     required this.userSettings,
     required this.authProvider,
     super.key,
   });
+
+  /// Provides persisted user preferences (theme, locale).
   final UserSettingsService userSettings;
+
+  /// Provides authentication and tokens.
   final AuthProvider authProvider;
 
   @override
@@ -38,6 +45,7 @@ class _MyAppState extends State<MyApp> {
     _locale = widget.userSettings.locale;
   }
 
+  /// Toggles the app theme between light and dark modes.
   void _toggleTheme() {
     final newMode = _themeMode == ThemeMode.dark
         ? ThemeMode.light
@@ -48,6 +56,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  /// Changes the app's locale or resets to the system default.
   void _changeLocale(Locale? locale) {
     if (locale == null) {
       widget.userSettings.resetLocaleToSystem();

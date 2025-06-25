@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+/// A collection of static constants used throughout the R-Taaw frontend app.
 class AppConsts {
+  /// Supported languages and their human-readable names.
+  ///
+  /// This list is used to populate language selection menus.
   static const List<(Locale, String)> languages = [
     (Locale('sq'), 'Albanian - Shqip'),
     (Locale('ar'), 'Arabic - عربي'),
@@ -60,12 +64,18 @@ class AppConsts {
     (Locale('zh'), 'Chinese'),
   ];
 
+  /// Base URL for API requests, defined via `--dart-define`.
   static const String apiBaseUrl = String.fromEnvironment(
     'API_BASE_URL',
     defaultValue: 'http://127.0.0.1/api/',
   );
 
+  /// Short version of the application title.
   static const String appTitle = 'R‑Taaw';
+
+  /// Full version of the application title with subtitle.
   static const String appFullTitle = 'R‑Taaw: Recipes to Remember';
+
+  /// Default label shown for language selection if no language is chosen.
   static const String languageFallbackLabel = 'Language';
 }
