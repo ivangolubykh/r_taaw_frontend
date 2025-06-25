@@ -62,6 +62,10 @@ class AppConsts {
 
   static const String apiBaseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'http://127.0.0.1/qpi/',
+    defaultValue: 'http://127.0.0.1/api/',
   );
+
+  static const String appTitle = 'R‑Taaw';
+  static const String appFullTitle = 'R‑Taaw: Recipes to Remember';
+  static const String languageFallbackLabel = 'Language';
 }

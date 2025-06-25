@@ -191,11 +191,53 @@ abstract class AppLocalizations {
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
 
-  /// The conventional newborn programmer greeting
+  /// Text on a button that cancels an operation
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Cancel'**
+  String get cancel;
+
+  /// Menu entry for changing the language. Should always include English in parentheses for clarity, e.g., 'Change Language (Language)'
+  ///
+  /// In en, this message translates to:
+  /// **'Change Language'**
+  String get languageOption;
+
+  /// No description provided for @loginOption.
+  ///
+  /// In en, this message translates to:
+  /// **'🔐 Login'**
+  String get loginOption;
+
+  /// Message asking the user if they are sure about logging out
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to log out?'**
+  String get logoutConfirmMessage;
+
+  /// Title for the logout confirmation dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Logout'**
+  String get logoutConfirmTitle;
+
+  /// Menu entry for logging out the user
+  ///
+  /// In en, this message translates to:
+  /// **'🚪 Logout'**
+  String get logoutOption;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'⚙️ Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @welcomeText.
+  ///
+  /// In en, this message translates to:
+  /// **'👋 Welcome to R‑Taaw!'**
+  String get welcomeText;
 }
 
 class _AppLocalizationsDelegate

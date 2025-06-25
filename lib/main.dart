@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'theme/theme_provider.dart';
-import 'routing/router.dart';
-import 'l10n/app_localizations.dart';
-import 'services/user_settings_service.dart';
+import 'package:provider/provider.dart';
+import 'package:r_taaw_frontend/auth/auth_provider.dart';
+import 'package:r_taaw_frontend/l10n/app_localizations.dart';
+import 'package:r_taaw_frontend/routing/router.dart';
+import 'package:r_taaw_frontend/services/user_settings_service.dart';
+import 'package:r_taaw_frontend/theme/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final userSettings = await UserSettingsService.create();
-  runApp(MyApp(userSettings: userSettings));
+  final authProvider = await AuthProvider.create();
+  runApp(MyApp(userSettings: userSettings, authProvider: authProvider));
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({
+    required this.userSettings,
+    required this.authProvider,
+    super.key,
+  });
   final UserSettingsService userSettings;
-  const MyApp({super.key, required this.userSettings});
+  final AuthProvider authProvider;
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -56,25 +64,27 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ThemeProvider(
-      themeMode: _themeMode,
-      toggleTheme: _toggleTheme,
-      child: ScreenUtilInit(
-        designSize: const Size(360, 690),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return MaterialApp.router(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData.light(useMaterial3: true),
-            darkTheme: ThemeData.dark(useMaterial3: true),
-            themeMode: _themeMode,
-            routerConfig: router,
-            locale: _locale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-          );
-        },
+    return ChangeNotifierProvider<AuthProvider>.value(
+      value: widget.authProvider,
+      child: ThemeProvider(
+        themeMode: _themeMode,
+        toggleTheme: _toggleTheme,
+        child: ScreenUtilInit(
+          minTextAdapt: true,
+          splitScreenMode: true,
+          builder: (context, child) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData.light(useMaterial3: true),
+              darkTheme: ThemeData.dark(useMaterial3: true),
+              themeMode: _themeMode,
+              routerConfig: router,
+              locale: _locale,
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+            );
+          },
+        ),
       ),
     );
   }

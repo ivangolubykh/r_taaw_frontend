@@ -1,6 +1,32 @@
 {
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  }
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Text on a button that cancels an operation"
+  },
+
+  "languageOption": "Change Language",
+  "@languageOption": {
+    "description": "Menu entry for changing the language. Should always include English in parentheses for clarity, e.g., 'Change Language (Language)'"
+  },
+
+  "loginOption": "🔐 Login",
+
+  "logoutConfirmMessage": "Are you sure you want to log out?",
+  "@logoutConfirmMessage": {
+    "description": "Message asking the user if they are sure about logging out"
+  },
+
+  "logoutConfirmTitle": "Confirm Logout",
+  "@logoutConfirmTitle": {
+    "description": "Title for the logout confirmation dialog"
+  },
+
+  "logoutOption": "🚪 Logout",
+  "@logoutOption": {
+    "description": "Menu entry for logging out the user"
+  },
+
+  "settingsTitle": "⚙️ Settings",
+
+  "welcomeText": "👋 Welcome to R‑Taaw!"
 }

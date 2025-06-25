@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import '../theme/theme_provider.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:r_taaw_frontend/auth/auth_provider.dart';
+import 'package:r_taaw_frontend/core/constants/consts.dart';
+import 'package:r_taaw_frontend/l10n/app_localizations.dart';
+import 'package:r_taaw_frontend/theme/theme_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,38 +12,69 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = ThemeProvider.of(context);
+    final loc = AppLocalizations.of(context)!;
+    final auth = Provider.of<AuthProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: const Text(AppConsts.appTitle),
         actions: [
           IconButton(
-            icon: Icon(
-              Theme.of(context).brightness == Brightness.dark
-                  ? Icons.light_mode
-                  : Icons.dark_mode,
-            ),
-            onPressed: themeProvider.toggleTheme,
+            icon: Icon(auth.isAuthenticated ? Icons.logout : Icons.login),
+            tooltip: auth.isAuthenticated ? loc.logoutOption : loc.loginOption,
+            onPressed: () {
+              if (auth.isAuthenticated) {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: Text(loc.logoutConfirmTitle),
+                    content: Text(loc.logoutConfirmMessage),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(), // Cancel
+                        child: Text(loc.cancel),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close dialog
+                          auth.clearTokens();
+                        },
+                        child: Text(loc.logoutOption),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                context.go('/login');
+              }
+            },
           ),
         ],
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const [
+          children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Settings', style: TextStyle(color: Colors.white)),
+              decoration: const BoxDecoration(color: Colors.blue),
+              child: Text(
+                loc.settingsTitle,
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
             ListTile(
-              leading: Icon(Icons.language),
-              title: Text('Language'),
-              // Add onTap for language change in the future
+              leading: const Icon(Icons.language),
+              title: Text(
+                '${loc.languageOption} (${AppConsts.languageFallbackLabel})',
+              ),
+              onTap: () {
+                // TODO: implement language change navigation
+              },
             ),
           ],
         ),
       ),
-      body: const Center(child: Text('Welcome to R‑Taaw!')),
+      body: Center(child: Text(loc.welcomeText)),
     );
   }
 }

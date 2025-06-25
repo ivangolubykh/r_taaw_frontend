@@ -1,0 +1,10 @@
+# Example overrides for local development
+# Copy this file to Makefile.local and edit as needed
+
+# Example: run app with a specific flavor or device
+# run:
+# 	flutter run --flavor dev --device-id emulator-5554
+
+# Example: override pub-get to include custom pub cache location
+# pub-get:
+# 	FLUTTER_PUB_CACHE=~/custom_cache flutter pub get

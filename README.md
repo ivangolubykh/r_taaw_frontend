@@ -16,6 +16,7 @@ This repository contains the **Flutter-based frontend** of the project.
 - **Navigation**: `go_router`
 - **State**: custom `ThemeProvider` via `InheritedWidget`
 - **Localization**: `.arb` files, `flutter_localizations`
+- **Linting**: [`very_good_analysis`](https://pub.dev/packages/very_good_analysis)
 - **Supported platforms**: Android, Web
 
 ---
@@ -34,8 +35,8 @@ This repository contains the **Flutter-based frontend** of the project.
 git clone https://github.com/ivangolubykh/r_taaw_frontend.git
 cd r_taaw_frontend
 cp .env.example .env
-flutter pub get
-flutter run
+make pub-get
+make run
 ```
 
 To run on web:
@@ -56,7 +57,6 @@ lib/
 ├── theme/                 # Theme provider
 │   └── theme_provider.dart
 ├── l10n/                  # Localization support
-│
 └── screens/               # Will contain UI screens
 ```
 
@@ -65,17 +65,52 @@ lib/
 ## 🧑‍💻 Development
 
 - Light/dark theme switching is supported via a central ThemeProvider.
-- Localization is already wired; use .arb files in lib/l10n/ to add translations.
-- Routing is handled via go_router. Main route: /.
+- Localization is already wired; use .arb files in `lib/l10n/` to add translations.
+- Routing is handled via go_router. Main route: `/`.
 - Language and theme controls will be accessible from any screen (planned).
 
 ### ⚙️ Environment and Builds
 
-- Environment variables are stored in .env (see .env.example)
+- Environment variables are stored in `.env` (see `.env.example`)
 - To build for all supported platforms at once, run:
+
 ```bash
 ./build_all.sh
 ```
+
+---
+
+## 🛠 Makefile Commands
+
+For convenience, common tasks are available via `make`:
+
+| Command         | Description                                   |
+|----------------|-----------------------------------------------|
+| `make format`   | Sort imports and format code (`dart format`) |
+| `make fix`      | Apply Dart auto-fixes                        |
+| `make lint`     | Run analyzer and check for lints             |
+| `make check`    | Run fix, format, and lint in sequence        |
+| `make test`     | Run all tests                                |
+| `make test-cov` | Run tests and collect coverage               |
+| `make coverage` | Generate HTML coverage report via `genhtml`  |
+| `make run`      | Launch the app                               |
+| `make build-all`| Build app for all supported platforms        |
+| `make clean`    | Clean build artifacts                        |
+| `make pub-get`  | Install dependencies                         |
+| `make pub-upgrade` | Upgrade dependencies                      |
+| `make gen-l10n` | Generate localization files from .arb        |
+
+> Local overrides can be defined in `Makefile.local`.
+
+---
+
+## 📅 Linting & Code Style
+
+This project uses [`very_good_analysis`](https://pub.dev/packages/very_good_analysis) for enforcing strict and consistent Dart style.
+
+- All code must follow the linter rules defined in `analysis_options.yaml`.
+- Documentation for public classes/functions is required (can be added incrementally).
+- Run `make check` before submitting a PR.
 
 ---
 

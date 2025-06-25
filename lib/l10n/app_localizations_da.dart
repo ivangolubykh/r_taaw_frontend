@@ -9,5 +9,26 @@ class AppLocalizationsDa extends AppLocalizations {
   AppLocalizationsDa([String locale = 'da']) : super(locale);
 
   @override
-  String get helloWorld => 'Hello World!';
+  String get cancel => 'Cancel';
+
+  @override
+  String get languageOption => 'Change Language';
+
+  @override
+  String get loginOption => '🔐 Login';
+
+  @override
+  String get logoutConfirmMessage => 'Are you sure you want to log out?';
+
+  @override
+  String get logoutConfirmTitle => 'Confirm Logout';
+
+  @override
+  String get logoutOption => '🚪 Logout';
+
+  @override
+  String get settingsTitle => '⚙️ Settings';
+
+  @override
+  String get welcomeText => '👋 Welcome to R‑Taaw!';
 }
