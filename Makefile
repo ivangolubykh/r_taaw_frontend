@@ -1,4 +1,4 @@
-.PHONY: help format fix lint check run clean pub-get pub-upgrade gen-l10n test test-cov coverage
+.PHONY: help format fix lint check run build-all clean pub-get pub-upgrade gen-l10n test test-cov coverage sort-arb
 
 -include Makefile.local
 
@@ -12,11 +12,12 @@ help:
 	@echo "  make test-cov          - Run tests and collect coverage"
 	@echo "  make coverage          - Generate HTML coverage report (requires lcov)"
 	@echo "  make run               - Run the app"
-	@echo "  make build-all         - Build app for all supported platforms"
+	@echo "  make build-all         - Build app for all supported platforms (uses Dart script)"
 	@echo "  make clean             - Clean build artifacts"
 	@echo "  make pub-get           - Get dependencies"
 	@echo "  make pub-upgrade       - Upgrade dependencies"
 	@echo "  make gen-l10n          - Generate localization files"
+	@echo "  make sort-arb          - Alphabetically sort all .arb localization files"
 
 format:
 	dart fix --apply
@@ -43,7 +44,7 @@ run:
 	flutter run
 
 build-all:
-	./scripts/build_all.sh
+	dart scripts/build_all.dart
 
 clean:
 	flutter clean
@@ -56,3 +57,6 @@ pub-upgrade:
 
 gen-l10n:
 	flutter gen-l10n
+
+sort-arb:
+	dart scripts/sort_arb.dart

@@ -45,3 +45,20 @@ app.*.map.json
 # Environment and local overrides
 .env
 Makefile.local
+*.local
+.local/
+local/
+
+# Common local override extensions (but allow templates)
+*.local.yaml
+*.local.yml
+*.local.json
+
+# Allow template examples
+!Makefile.local.example
+!*.local.yaml.example
+!*.local.yml.example
+!*.local.json.example
+
+# Flutter DevTools local config
+devtools_options.yaml

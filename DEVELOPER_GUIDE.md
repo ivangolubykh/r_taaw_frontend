@@ -24,6 +24,13 @@ The frontend is written in **Flutter** and supports:
   ```bash
   make build-all
   ```
+  This internally runs `scripts/build_all.dart`
+
+- To sort `.arb` localization files, use:
+  ```bash
+  make sort-arb
+  ```
+  This runs `scripts/sort_arb.dart`
 
 ---
 
@@ -54,7 +61,8 @@ We use a `Makefile` to standardize project tasks. Available commands:
 - `make test-cov` – Run tests and collect coverage
 - `make coverage` – Generate HTML coverage report (requires `lcov`)
 - `make run` – Run the app
-- `make build-all` – Build for all platforms using `.env`
+- `make build-all` – Build for all platforms using `.env` and Dart script
+- `make sort-arb` – Sort `.arb` localization files with `scripts/sort_arb.dart`
 
 ---
 
@@ -112,6 +120,10 @@ Always fork the repository if you're not a maintainer.
   2. Run:
      ```bash
      make gen-l10n
+     ```
+  3. (Optional) Sort keys:
+     ```bash
+     make sort-arb
      ```
 
 ---

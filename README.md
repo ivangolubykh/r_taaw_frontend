@@ -58,6 +58,10 @@ lib/
 │   └── theme_provider.dart
 ├── l10n/                  # Localization support
 └── screens/               # Will contain UI screens
+
+scripts/
+├── build_all.dart         # Build app for all platforms (replaces old shell script)
+└── sort_arb.dart          # Sort .arb localization files by key order
 ```
 
 ---
@@ -65,8 +69,8 @@ lib/
 ## 🧑‍💻 Development
 
 - Light/dark theme switching is supported via a central ThemeProvider.
-- Localization is already wired; use .arb files in `lib/l10n/` to add translations.
-- Routing is handled via go_router. Main route: `/`.
+- Localization is already wired; use `.arb` files in `lib/l10n/` to add translations.
+- Routing is handled via `go_router`. Main route: `/`.
 - Language and theme controls will be accessible from any screen (planned).
 
 ### ⚙️ Environment and Builds
@@ -75,30 +79,31 @@ lib/
 - To build for all supported platforms at once, run:
 
 ```bash
-./build_all.sh
+make build-all
 ```
 
 ---
 
 ## 🛠 Makefile Commands
 
-For convenience, common tasks are available via `make`:
+Common tasks are available via `make`:
 
-| Command         | Description                                   |
-|----------------|-----------------------------------------------|
-| `make format`   | Sort imports and format code (`dart format`) |
-| `make fix`      | Apply Dart auto-fixes                        |
-| `make lint`     | Run analyzer and check for lints             |
-| `make check`    | Run fix, format, and lint in sequence        |
-| `make test`     | Run all tests                                |
-| `make test-cov` | Run tests and collect coverage               |
-| `make coverage` | Generate HTML coverage report via `genhtml`  |
-| `make run`      | Launch the app                               |
-| `make build-all`| Build app for all supported platforms        |
-| `make clean`    | Clean build artifacts                        |
-| `make pub-get`  | Install dependencies                         |
-| `make pub-upgrade` | Upgrade dependencies                      |
-| `make gen-l10n` | Generate localization files from .arb        |
+| Command             | Description                                              |
+|--------------------|----------------------------------------------------------|
+| `make format`       | Sort imports and format code                            |
+| `make fix`          | Apply Dart auto-fixes                                   |
+| `make lint`         | Run analyzer and check for lints                        |
+| `make check`        | Run fix, format, and lint in sequence                   |
+| `make test`         | Run all tests                                           |
+| `make test-cov`     | Run tests and collect coverage                          |
+| `make coverage`     | Generate HTML coverage report via `genhtml`            |
+| `make run`          | Launch the app                                          |
+| `make build-all`    | Build app for all supported platforms (Dart script)     |
+| `make sort-arb`     | Sort all `.arb` localization files by key and metadata  |
+| `make clean`        | Clean build artifacts                                   |
+| `make pub-get`      | Install dependencies                                    |
+| `make pub-upgrade`  | Upgrade dependencies                                    |
+| `make gen-l10n`     | Generate localization files from `.arb`                 |
 
 > Local overrides can be defined in `Makefile.local`.
 
