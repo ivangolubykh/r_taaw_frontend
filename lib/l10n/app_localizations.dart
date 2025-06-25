@@ -233,6 +233,12 @@ abstract class AppLocalizations {
   /// **'⚙️ Settings'**
   String get settingsTitle;
 
+  /// Tooltip for the button that toggles the app's theme between light and dark modes
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle Light/Dark Theme'**
+  String get themeSwitchOption;
+
   /// No description provided for @welcomeText.
   ///
   /// In en, this message translates to:

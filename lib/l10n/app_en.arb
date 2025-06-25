@@ -21,5 +21,9 @@
     "description": "Menu entry for logging out the user"
   },
   "settingsTitle": "⚙️ Settings",
+  "themeSwitchOption": "Toggle Light/Dark Theme",
+  "@themeSwitchOption": {
+    "description": "Tooltip for the button that toggles the app's theme between light and dark modes"
+  },
   "welcomeText": "👋 Welcome to R‑Taaw!"
 }

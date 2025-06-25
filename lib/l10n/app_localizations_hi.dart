@@ -30,5 +30,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsTitle => '⚙️ Settings';
 
   @override
+  String get themeSwitchOption => 'Toggle Light/Dark Theme';
+
+  @override
   String get welcomeText => '👋 Welcome to R‑Taaw!';
 }

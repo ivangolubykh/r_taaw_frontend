@@ -49,6 +49,15 @@ class HomeScreen extends StatelessWidget {
               }
             },
           ),
+          IconButton(
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            tooltip: loc.themeSwitchOption,
+            onPressed: themeProvider.toggleTheme,
+          ),
         ],
       ),
       drawer: Drawer(
