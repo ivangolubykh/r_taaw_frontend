@@ -34,6 +34,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get welcomeText => '👋 Welcome to R‑Taaw!';
+
+  @override
+  String get usernameInvalid => 'Please enter your username.';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters.';
+
+  @override
+  String get usernameLabel => 'Username';
+
+  @override
+  String get passwordLabel => 'Password';
+
+  @override
+  String get breadcrumbHome => '🏠 Home';
+
+  @override
+  String get registerLinkText => 'Don\'t have an account? Register';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).

@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// **'Change Language'**
   String get languageOption;
 
-  /// No description provided for @loginOption.
+  /// Button text or title for logging into the application
   ///
   /// In en, this message translates to:
   /// **'🔐 Login'**
@@ -227,7 +227,7 @@ abstract class AppLocalizations {
   /// **'🚪 Logout'**
   String get logoutOption;
 
-  /// No description provided for @settingsTitle.
+  /// Title of the settings drawer section
   ///
   /// In en, this message translates to:
   /// **'⚙️ Settings'**
@@ -239,11 +239,47 @@ abstract class AppLocalizations {
   /// **'Toggle Light/Dark Theme'**
   String get themeSwitchOption;
 
-  /// No description provided for @welcomeText.
+  /// Text displayed to welcome the user on the home screen
   ///
   /// In en, this message translates to:
   /// **'👋 Welcome to R‑Taaw!'**
   String get welcomeText;
+
+  /// Validation error for empty username field
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your username.'**
+  String get usernameInvalid;
+
+  /// Validation error for a password that is too short
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters.'**
+  String get passwordTooShort;
+
+  /// Label for the username input field on the login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get usernameLabel;
+
+  /// Label for the password input field on the login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// Label for the home breadcrumb
+  ///
+  /// In en, this message translates to:
+  /// **'🏠 Home'**
+  String get breadcrumbHome;
+
+  /// Text for the link that navigates to the registration screen
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Register'**
+  String get registerLinkText;
 }
 
 class _AppLocalizationsDelegate
