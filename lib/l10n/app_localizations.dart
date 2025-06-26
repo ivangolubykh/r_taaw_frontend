@@ -191,6 +191,12 @@ abstract class AppLocalizations {
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
 
+  /// Label for the home breadcrumb
+  ///
+  /// In en, this message translates to:
+  /// **'🏠 Home'**
+  String get breadcrumbHome;
+
   /// Text on a button that cancels an operation
   ///
   /// In en, this message translates to:
@@ -227,6 +233,24 @@ abstract class AppLocalizations {
   /// **'🚪 Logout'**
   String get logoutOption;
 
+  /// Label for the password input field on the login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// Validation error for a password that is too short
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters.'**
+  String get passwordTooShort;
+
+  /// Text for the link that navigates to the registration screen
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Register'**
+  String get registerLinkText;
+
   /// Title of the settings drawer section
   ///
   /// In en, this message translates to:
@@ -239,23 +263,11 @@ abstract class AppLocalizations {
   /// **'Toggle Light/Dark Theme'**
   String get themeSwitchOption;
 
-  /// Text displayed to welcome the user on the home screen
-  ///
-  /// In en, this message translates to:
-  /// **'👋 Welcome to R‑Taaw!'**
-  String get welcomeText;
-
   /// Validation error for empty username field
   ///
   /// In en, this message translates to:
   /// **'Please enter your username.'**
   String get usernameInvalid;
-
-  /// Validation error for a password that is too short
-  ///
-  /// In en, this message translates to:
-  /// **'Password must be at least 6 characters.'**
-  String get passwordTooShort;
 
   /// Label for the username input field on the login screen
   ///
@@ -263,23 +275,11 @@ abstract class AppLocalizations {
   /// **'Username'**
   String get usernameLabel;
 
-  /// Label for the password input field on the login screen
+  /// Text displayed to welcome the user on the home screen
   ///
   /// In en, this message translates to:
-  /// **'Password'**
-  String get passwordLabel;
-
-  /// Label for the home breadcrumb
-  ///
-  /// In en, this message translates to:
-  /// **'🏠 Home'**
-  String get breadcrumbHome;
-
-  /// Text for the link that navigates to the registration screen
-  ///
-  /// In en, this message translates to:
-  /// **'Don\'t have an account? Register'**
-  String get registerLinkText;
+  /// **'👋 Welcome to R‑Taaw!'**
+  String get welcomeText;
 }
 
 class _AppLocalizationsDelegate
