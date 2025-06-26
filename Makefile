@@ -2,12 +2,19 @@
 
 -include Makefile.local
 
+# --------- ENV UTILS ----------
+define load-env
+  $(eval $(foreach line,$(shell grep -v '^#' .env | grep '=' | xargs),$(eval export $(line))))
+endef
+
+# --------- COMMANDS ----------
 help:
 	@echo "Available commands:"
 	@echo "  make format            - Sort imports and format Dart code"
 	@echo "  make fix               - Apply automatic Dart fixes"
 	@echo "  make lint              - Analyze the project for errors and lints"
 	@echo "  make check             - Run fix, format, and lint in sequence"
+	@echo "  make precommit         - Run all pre-commit checks (l10n, arb, format, lint)"
 	@echo "  make test              - Run tests only"
 	@echo "  make test-cov          - Run tests and collect coverage"
 	@echo "  make coverage          - Generate HTML coverage report (requires lcov)"
@@ -31,6 +38,9 @@ lint:
 
 check: fix format lint
 
+precommit: gen-l10n sort-arb format lint
+	@echo "✅ Pre-commit checks completed"
+
 test:
 	flutter test
 
@@ -41,7 +51,9 @@ coverage:
 	genhtml coverage/lcov.info -o coverage/html
 
 run:
-	flutter run
+	$(call load-env)
+	@echo "▶️  Running with API_BASE_URL=$$API_BASE_URL"
+	flutter run --dart-define=API_BASE_URL=$$API_BASE_URL
 
 build-all:
 	dart scripts/build_all.dart

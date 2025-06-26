@@ -18,7 +18,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get languageOption => 'Change Language';
 
   @override
+  String get loggingIn => 'Logging in...';
+
+  @override
+  String get loginFailed => 'Login failed. Please try again.';
+
+  @override
   String get loginOption => '🔐 Login';
+
+  @override
+  String get loginSuccess => 'Logged in successfully.';
 
   @override
   String get logoutConfirmMessage => 'Are you sure you want to log out?';
@@ -33,7 +42,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get passwordLabel => 'Password';
 
   @override
-  String get passwordTooShort => 'Password must be at least 6 characters.';
+  String get passwordRequired => 'Password is required.';
 
   @override
   String get registerLinkText => 'Don\'t have an account? Register';

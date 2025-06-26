@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:r_taaw_frontend/api/api_client.dart';
+import 'package:r_taaw_frontend/api/auth_api.dart';
 import 'package:r_taaw_frontend/auth/auth_provider.dart';
 import 'package:r_taaw_frontend/l10n/app_localizations.dart';
 import 'package:r_taaw_frontend/routing/router.dart';
@@ -73,8 +75,14 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AuthProvider>.value(
-      value: widget.authProvider,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>.value(value: widget.authProvider),
+        Provider<ApiClient>(create: (_) => ApiClient()),
+        ProxyProvider<ApiClient, AuthApi>(
+          update: (_, client, __) => AuthApi(client),
+        ),
+      ],
       child: ThemeProvider(
         themeMode: _themeMode,
         toggleTheme: _toggleTheme,

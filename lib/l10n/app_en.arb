@@ -11,10 +11,13 @@
   "@languageOption": {
     "description": "Menu entry for changing the language. Should always include English in parentheses for clarity, e.g., 'Change Language (Language)'"
   },
+  "loggingIn": "Logging in...",
+  "loginFailed": "Login failed. Please try again.",
   "loginOption": "🔐 Login",
   "@loginOption": {
     "description": "Button text or title for logging into the application"
   },
+  "loginSuccess": "Logged in successfully.",
   "logoutConfirmMessage": "Are you sure you want to log out?",
   "@logoutConfirmMessage": {
     "description": "Message asking the user if they are sure about logging out"
@@ -31,10 +34,7 @@
   "@passwordLabel": {
     "description": "Label for the password input field on the login screen"
   },
-  "passwordTooShort": "Password must be at least 6 characters.",
-  "@passwordTooShort": {
-    "description": "Validation error for a password that is too short"
-  },
+  "passwordRequired": "Password is required.",
   "registerLinkText": "Don't have an account? Register",
   "@registerLinkText": {
     "description": "Text for the link that navigates to the registration screen"

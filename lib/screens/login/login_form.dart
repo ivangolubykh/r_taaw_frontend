@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:r_taaw_frontend/api/auth_api.dart';
+import 'package:r_taaw_frontend/auth/auth_provider.dart';
 import 'package:r_taaw_frontend/l10n/app_localizations.dart';
 
 /// A login form using username and password.
@@ -14,6 +18,7 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isSubmitting = false;
 
   @override
   void dispose() {
@@ -22,12 +27,38 @@ class _LoginFormState extends State<LoginForm> {
     super.dispose();
   }
 
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      // TODO(ivangolubykh): Implement actual login API call.
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Logging in...')));
+  Future<void> _submit() async {
+    final loc = AppLocalizations.of(context)!;
+    if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isSubmitting = true);
+    final authApi = Provider.of<AuthApi>(context, listen: false);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    try {
+      final response = await authApi.login(
+        _usernameController.text.trim(),
+        _passwordController.text,
+      );
+      await authProvider.setTokens(
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(loc.loginSuccess)));
+        context.go('/');
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(loc.loginFailed)));
+      }
+    } finally {
+      if (mounted) setState(() => _isSubmitting = false);
     }
   }
 
@@ -51,12 +82,14 @@ class _LoginFormState extends State<LoginForm> {
             controller: _passwordController,
             decoration: InputDecoration(labelText: loc.passwordLabel),
             obscureText: true,
-            validator: (value) => value != null && value.length >= 6
-                ? null
-                : loc.passwordTooShort,
+            validator: (value) =>
+                value != null && value.isNotEmpty ? null : loc.passwordRequired,
           ),
           const SizedBox(height: 24),
-          ElevatedButton(onPressed: _submit, child: Text(loc.loginOption)),
+          ElevatedButton(
+            onPressed: _isSubmitting ? null : _submit,
+            child: Text(_isSubmitting ? loc.loggingIn : loc.loginOption),
+          ),
         ],
       ),
     );

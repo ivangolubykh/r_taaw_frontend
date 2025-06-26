@@ -209,11 +209,29 @@ abstract class AppLocalizations {
   /// **'Change Language'**
   String get languageOption;
 
+  /// No description provided for @loggingIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Logging in...'**
+  String get loggingIn;
+
+  /// No description provided for @loginFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed. Please try again.'**
+  String get loginFailed;
+
   /// Button text or title for logging into the application
   ///
   /// In en, this message translates to:
   /// **'🔐 Login'**
   String get loginOption;
+
+  /// No description provided for @loginSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in successfully.'**
+  String get loginSuccess;
 
   /// Message asking the user if they are sure about logging out
   ///
@@ -239,11 +257,11 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get passwordLabel;
 
-  /// Validation error for a password that is too short
+  /// No description provided for @passwordRequired.
   ///
   /// In en, this message translates to:
-  /// **'Password must be at least 6 characters.'**
-  String get passwordTooShort;
+  /// **'Password is required.'**
+  String get passwordRequired;
 
   /// Text for the link that navigates to the registration screen
   ///
