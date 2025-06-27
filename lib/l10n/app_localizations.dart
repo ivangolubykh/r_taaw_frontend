@@ -203,6 +203,18 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// Tooltip explaining the importance of providing email, even if it's optional
+  ///
+  /// In en, this message translates to:
+  /// **'Email is optional, but needed for password recovery and future features. Without it, you won\'t be able to restore your password.'**
+  String get emailHelpTooltip;
+
+  /// Label for the optional email input field in registration form
+  ///
+  /// In en, this message translates to:
+  /// **'Email (optional)'**
+  String get emailLabel;
+
   /// Menu entry for changing the language. Should always include English in parentheses for clarity, e.g., 'Change Language (Language)'
   ///
   /// In en, this message translates to:
@@ -251,23 +263,71 @@ abstract class AppLocalizations {
   /// **'🚪 Logout'**
   String get logoutOption;
 
-  /// Label for the password input field on the login screen
+  /// Tooltip explaining that nickname is the author's name shown publicly
+  ///
+  /// In en, this message translates to:
+  /// **'This is your public display name. It will be shown next to your username in public recipes as the author.'**
+  String get nicknameHelpTooltip;
+
+  /// Label for the user's display name shown to others
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname (optional)'**
+  String get nicknameLabel;
+
+  /// Text for the confirmation button in dialogs
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get okButton;
+
+  /// Tooltip explaining Django password rules to the user
+  ///
+  /// In en, this message translates to:
+  /// **'Your password should be at least 8 characters long. Avoid using common or numeric-only passwords.'**
+  String get passwordHelpTooltip;
+
+  /// Label for the password input field on login or registration screens
   ///
   /// In en, this message translates to:
   /// **'Password'**
   String get passwordLabel;
 
-  /// No description provided for @passwordRequired.
+  /// Validation message when password field is empty
   ///
   /// In en, this message translates to:
-  /// **'Password is required.'**
+  /// **'Please enter a password'**
   String get passwordRequired;
+
+  /// Shown when the entered password is too short according to Django default validators
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters long'**
+  String get passwordTooShort;
 
   /// Text for the link that navigates to the registration screen
   ///
   /// In en, this message translates to:
   /// **'Don\'t have an account? Register'**
   String get registerLinkText;
+
+  /// Label for the submit button on the registration form
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registerOption;
+
+  /// Message shown when user registration succeeds
+  ///
+  /// In en, this message translates to:
+  /// **'Registration successful'**
+  String get registerSuccess;
+
+  /// Text shown on the submit button while registration is in progress
+  ///
+  /// In en, this message translates to:
+  /// **'Registering...'**
+  String get registering;
 
   /// Title of the settings drawer section
   ///
@@ -281,13 +341,19 @@ abstract class AppLocalizations {
   /// **'Toggle Light/Dark Theme'**
   String get themeSwitchOption;
 
-  /// Validation error for empty username field
+  /// Tooltip explaining length and uniqueness constraints for username
   ///
   /// In en, this message translates to:
-  /// **'Please enter your username.'**
+  /// **'Username must be unique and up to 150 characters long.'**
+  String get usernameHelpTooltip;
+
+  /// Validation message when username field is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a username'**
   String get usernameInvalid;
 
-  /// Label for the username input field on the login screen
+  /// Label for the username input field on login or registration screens
   ///
   /// In en, this message translates to:
   /// **'Username'**

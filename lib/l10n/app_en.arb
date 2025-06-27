@@ -7,6 +7,14 @@
   "@cancel": {
     "description": "Text on a button that cancels an operation"
   },
+  "emailHelpTooltip": "Email is optional, but needed for password recovery and future features. Without it, you won't be able to restore your password.",
+  "@emailHelpTooltip": {
+    "description": "Tooltip explaining the importance of providing email, even if it's optional"
+  },
+  "emailLabel": "Email (optional)",
+  "@emailLabel": {
+    "description": "Label for the optional email input field in registration form"
+  },
   "languageOption": "Change Language",
   "@languageOption": {
     "description": "Menu entry for changing the language. Should always include English in parentheses for clarity, e.g., 'Change Language (Language)'"
@@ -30,14 +38,49 @@
   "@logoutOption": {
     "description": "Menu entry for logging out the user"
   },
+  "nicknameHelpTooltip": "This is your public display name. It will be shown next to your username in public recipes as the author.",
+  "@nicknameHelpTooltip": {
+    "description": "Tooltip explaining that nickname is the author's name shown publicly"
+  },
+  "nicknameLabel": "Nickname (optional)",
+  "@nicknameLabel": {
+    "description": "Label for the user's display name shown to others"
+  },
+  "okButton": "OK",
+  "@okButton": {
+    "description": "Text for the confirmation button in dialogs"
+  },
+  "passwordHelpTooltip": "Your password should be at least 8 characters long. Avoid using common or numeric-only passwords.",
+  "@passwordHelpTooltip": {
+    "description": "Tooltip explaining Django password rules to the user"
+  },
   "passwordLabel": "Password",
   "@passwordLabel": {
-    "description": "Label for the password input field on the login screen"
+    "description": "Label for the password input field on login or registration screens"
   },
-  "passwordRequired": "Password is required.",
+  "passwordRequired": "Please enter a password",
+  "@passwordRequired": {
+    "description": "Validation message when password field is empty"
+  },
+  "passwordTooShort": "Password must be at least 8 characters long",
+  "@passwordTooShort": {
+    "description": "Shown when the entered password is too short according to Django default validators"
+  },
   "registerLinkText": "Don't have an account? Register",
   "@registerLinkText": {
     "description": "Text for the link that navigates to the registration screen"
+  },
+  "registerOption": "Register",
+  "@registerOption": {
+    "description": "Label for the submit button on the registration form"
+  },
+  "registerSuccess": "Registration successful",
+  "@registerSuccess": {
+    "description": "Message shown when user registration succeeds"
+  },
+  "registering": "Registering...",
+  "@registering": {
+    "description": "Text shown on the submit button while registration is in progress"
   },
   "settingsTitle": "⚙️ Settings",
   "@settingsTitle": {
@@ -47,13 +90,17 @@
   "@themeSwitchOption": {
     "description": "Tooltip for the button that toggles the app's theme between light and dark modes"
   },
-  "usernameInvalid": "Please enter your username.",
+  "usernameHelpTooltip": "Username must be unique and up to 150 characters long.",
+  "@usernameHelpTooltip": {
+    "description": "Tooltip explaining length and uniqueness constraints for username"
+  },
+  "usernameInvalid": "Please enter a username",
   "@usernameInvalid": {
-    "description": "Validation error for empty username field"
+    "description": "Validation message when username field is empty"
   },
   "usernameLabel": "Username",
   "@usernameLabel": {
-    "description": "Label for the username input field on the login screen"
+    "description": "Label for the username input field on login or registration screens"
   },
   "welcomeText": "👋 Welcome to R‑Taaw!",
   "@welcomeText": {

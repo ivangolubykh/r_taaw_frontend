@@ -19,17 +19,51 @@ class AuthApi {
   ///
   /// On success (HTTP 200), returns an [AuthResponse] with the tokens.
   /// On failure, throws an [Exception] containing the response body.
-  Future<AuthResponse> login(String username, String password) async {
+  Future<AuthResponse> login(
+    String username,
+    String password, {
+    required String locale,
+  }) async {
     final response = await _client.post(
       'auth/token/',
       body: {'username': username, 'password': password},
+      headers: {'Accept-Language': locale},
     );
 
     if (response.statusCode == 200) {
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
-      return AuthResponse.fromJson(data);
+      return AuthResponse.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>,
+      );
     } else {
-      throw Exception('Login failed: ${response.body}');
+      throw Exception(response.body);
+    }
+  }
+
+  /// Registers a new user.
+  ///
+  /// Sends a `POST` request to `auth/register/` endpoint with the user info.
+  /// Throws [Exception] on failure.
+  Future<void> register({
+    required String username,
+    required String password,
+    String? email,
+    String? nickname,
+  }) async {
+    final body = <String, String>{
+      'username': username,
+      'password': password,
+      if (email != null) 'email': email,
+      if (nickname != null) 'nickname': nickname,
+    };
+
+    final response = await _client.post(
+      'auth/register/',
+      body: body,
+      headers: {'Accept-Language': 'en'},
+    );
+
+    if (response.statusCode != 201) {
+      throw Exception(response.body);
     }
   }
 }

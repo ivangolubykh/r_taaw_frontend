@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:r_taaw_frontend/api/auth_api.dart';
 import 'package:r_taaw_frontend/auth/auth_provider.dart';
 import 'package:r_taaw_frontend/l10n/app_localizations.dart';
+import 'package:r_taaw_frontend/widgets/ui/show_app_snack_bar.dart';
 
 /// A login form using username and password.
 class LoginForm extends StatefulWidget {
@@ -39,6 +40,7 @@ class _LoginFormState extends State<LoginForm> {
       final response = await authApi.login(
         _usernameController.text.trim(),
         _passwordController.text,
+        locale: Localizations.localeOf(context).toLanguageTag(),
       );
       await authProvider.setTokens(
         accessToken: response.accessToken,
@@ -46,16 +48,13 @@ class _LoginFormState extends State<LoginForm> {
       );
 
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(loc.loginSuccess)));
+        showAppSnackBar(context, loc.loginSuccess);
         context.go('/');
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(loc.loginFailed)));
+        final msg = e.toString().replaceFirst('Exception: ', '');
+        showAppSnackBar(context, msg, isError: true);
       }
     } finally {
       if (mounted) setState(() => _isSubmitting = false);
